@@ -30,6 +30,7 @@
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
+                                            <th>Foto</th>
                                             <th>Username</th>
                                             <th>Level</th>
                                             <th>Tanggl Daftar</th>
@@ -41,6 +42,9 @@
                                         <tr>
                                             <td>{{$u->id}}</td>
                                             <td>{{$u->name}}</td>
+                                            <td align="center" style="height: 300px width: 300px">
+                                                <img src="{{asset("foto/$u->foto")}}" alt="">
+                                            </td>
                                             <td>{{$u->username}}</td>
                                             <td>{{$u->level}}</td>
                                             <td>{{$u->created_at}}</td>

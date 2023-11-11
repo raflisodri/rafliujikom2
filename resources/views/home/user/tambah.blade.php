@@ -11,7 +11,7 @@
                                 <h3>Tambah Data User</h3>
                             </div>
                             <div class="card-body">
-                                <form action="/user/simpan" method="post">
+                                <form action="/user/simpan" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                   <label for="" class="form-label">Name</label>
@@ -20,6 +20,12 @@
                                       <div class="alert alert-danger alert-dismisible fade show" role="alert" data-dismiss="alert">{{$message}}</div>
                                   @enderror
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="" class="form-label">foto</label>
+                                    <input type="file" name="foto" id="" class="form-control" placeholder="" aria-describedby="helpId" >
+                                  </div>
+
                                 <div class="mb-3">
                                     <label for="" class="form-label">Username</label>
                                     <input type="text" name="username" id="" class="form-control" placeholder="" aria-describedby="helpId">

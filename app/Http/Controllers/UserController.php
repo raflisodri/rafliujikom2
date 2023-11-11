@@ -16,13 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        if(Auth()->User()->level == 'kasir'){
-        Auth::logout();
-        return redirect('login')->with('error1','You dont have permission');
-        }else{
+        // if(Auth()->User()->level == 'kasir'){
+        // Auth::logout();
+        // return redirect('login')->with('error1','You dont have permission');
+        // }else{
             $user = User::all();
             return view('home.user.index',compact(['user']));
-        }
+        // }
     }
 
     /**
@@ -43,6 +43,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $img = $request->file('foto');
+        $name = hexdec(uniqid());
+        $ext = strtolower($img->getClientOriginalExtension());
+        $foto = $name.'.'.$ext;
+        $img->move('foto/',$foto);
+
         $validate = $request->validate([
             'name'=>'required',
             'username'=>'required',
@@ -51,6 +57,7 @@ class UserController extends Controller
         ]);
         User::create([
             'name'=>$request->name,
+            'foto'=>$foto,
             'username'=>$request->username,
             'password'=>bcrypt($request->password),
             'level'=>$request->level,
