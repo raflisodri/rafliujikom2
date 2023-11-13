@@ -21,8 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard',[DashboardController::class,'index']);
-
 Route::get('/',[LoginController::class,'index']);
 Route::get('login',[LoginController::class,'index'])->name('login');
 Route::post('postLogin',[LoginController::class,'login']);
@@ -30,6 +28,9 @@ Route::get('/logout',[LoginController::class,'logout']);
 
 Route::get('/loginmember',[HistoryController::class,'index']);
 Route::post('/hasil',[HistoryController::class,'hasil']);
+
+Route::middleware(['auth'])->group(function () {
+Route::get('/dashboard',[DashboardController::class,'index']);
 
 Route::get('user',[UserController::class,'index']);
 Route::get('user/tambah',[UserController::class,'create']);
@@ -53,6 +54,7 @@ Route::post('suplier/update/{id}',[SuplierController::class,'update']);
 Route::get('suplier/delete/{id}',[SuplierController::class,'destroy']);
 
 Route::get('sepatu',[SepatuController::class,'index']);
+Route::get('sepatu/detail/{id}',[SepatuController::class,'detail']);
 Route::get('sepatu/tambah',[SepatuController::class,'create']);
 Route::post('sepatu/simpan',[SepatuController::class,'store']);
 Route::get('sepatu/edit/{id}',[SepatuController::class,'show']);
@@ -68,3 +70,4 @@ Route::get('transaksi/delete/{id}',[TransaksiController::class,'destroy']);
 Route::get('transaksi/cetak',[TransaksiController::class,'cetak']);
 Route::get('transaksi/struk/{id}',[TransaksiController::class,'struk']);
 
+});

@@ -1,4 +1,4 @@
-{{-- @if (Auth()->User()->level == "admin") --}}
+@if (Auth()->User()->level == "admin")
     
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
@@ -14,8 +14,8 @@
                     <!--change to offline or busy as needed-->
                 </div>
                 <div class="nav-profile-text d-flex flex-column pr-3">
-                    {{-- <span class="font-weight-medium mb-2">{{Auth()->User()->name}}</span>
-                    <span class="font-weight-normal">{{Auth()->User()->level}}</span> --}}
+                    <span class="font-weight-medium mb-2">{{Auth()->User()->name}}</span>
+                    <span class="font-weight-normal">{{Auth()->User()->level}}</span>
                 </div>
                 <span class="badge badge-danger text-white ml-3 rounded">3</span>
             </a>
@@ -81,9 +81,9 @@
     </ul>
 </nav>
     
-{{-- @else --}}
+@else
 
-{{-- <nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
         <a class="sidebar-brand brand-logo" href="index.html"><img src="{{asset('logo/versibiru1.png')}}" alt="logo" /></a>
         <a class="sidebar-brand brand-logo-mini pl-4 pt-3" href="index.html"><img src="{{asset('logo/versibiru1.png')}}" alt="logo" /></a>
@@ -168,4 +168,6 @@
         </li>
     </ul>
 </nav>
-@endif --}}
+@endif
+
+

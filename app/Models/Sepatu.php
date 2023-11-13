@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Sepatu extends Model
 {
     use HasFactory;
-    protected $fillable = ['id_suplier','nama','merk','jenis','stok','ukuran','warna','harga'];
+    protected $fillable = ['foto','id_suplier','nama','merk','jenis','stok','ukuran','warna','harga'];
     protected $table = 'sepatus';
     public function Suplier() {
         return $this->belongsTo(Suplier::class,'id_suplier','id');

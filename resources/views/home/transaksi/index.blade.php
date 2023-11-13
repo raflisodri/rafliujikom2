@@ -52,6 +52,7 @@
                                             <td>Rp.{{number_format($u->total,0,'.','.')}}</td>
                                             <td>
                                                 <a href="transaksi/edit/{{$u->id}}" class="btn btn-warning">Edit</a>
+                                              
                                                 <a href="transaksi/struk/{{$u->id}}" class="btn btn-success" target="_blank">Cetak</a>
                                                 <a href="#" class="btn btn-danger" onclick="Delete('transaksi/delete/{{$u->id}}')">Hapus</a>
                                             </td>

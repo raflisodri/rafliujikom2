@@ -11,8 +11,14 @@
                                 <h3>Tambah Data Sepatu</h3>
                             </div>
                             <div class="card-body">
-                                <form action="/sepatu/simpan" method="post">
+                                <form action="/sepatu/simpan" method="post" enctype="multipart/form-data">
                                 @csrf
+                                    <img class="img-preview img-fluid" alt="preview" style="width: 200px">
+                                <div class="mb-3">
+                                    <br><br>
+                                    <label for="" class="form-label">foto</label>
+                                    <input type="file" name="foto" id="image" class="form-control" placeholder="" aria-describedby="helpId" onchange="previewImage()" >
+                                  </div>
                                 {{-- <div class="mb-3">
                                   <label for="" class="form-label">Suplier</label>
                                   <input type="text" name="id_suplier" id="" class="form-control" placeholder="" aria-describedby="helpId">
@@ -88,5 +94,22 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image'); // perbaiki querySelector
+            const imgPreview = document.querySelector('.img-preview'); // perbaiki querySelector
+        
+            imgPreview.style.display = 'block';
+        
+            const fileReader = new FileReader(); // perbaiki penulisan FileReader
+            fileReader.readAsDataURL(image.files[0]); // perbaiki penulisan readAsDataURL
+        
+            fileReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+        </script>
+        
 
 @endsection

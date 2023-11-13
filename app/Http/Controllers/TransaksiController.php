@@ -24,6 +24,11 @@ class TransaksiController extends Controller
         return view('home.transaksi.index',compact('transaksi','user','member','sepatu'));     
     }
 
+    public function detail($id) {
+        $transaksi = Transaksi::find($id);
+        return view('home.transaksi.detail',compact('transaksi'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

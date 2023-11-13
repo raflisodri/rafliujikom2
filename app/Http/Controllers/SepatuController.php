@@ -20,6 +20,12 @@ class SepatuController extends Controller
         return view('home.sepatu.index',compact(['sepatu','suplier']));
     }
 
+    
+    public function detail($id) {
+        $sepatu = Sepatu::find($id);
+        return view('home.sepatu.detail',compact('sepatu'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -39,8 +45,14 @@ class SepatuController extends Controller
      */
     public function store(Request $request)
     {
-   
+        $img = $request->file('foto');
+        $name = hexdec(uniqid());
+        $ext = strtolower($img->getClientOriginalExtension());
+        $foto = $name.'.'.$ext;
+        $img->move('foto/',$foto);
+
         $validate = $request->validate([
+            
             'id_suplier'=>'required',
             'nama'=>'required',
             'merk'=>'required',
@@ -51,6 +63,7 @@ class SepatuController extends Controller
             'harga'=>'required',
         ]);
         Sepatu::create([
+            'foto'=>$foto,
             'id_suplier'=>$request->id_suplier,
             'nama'=>$request->nama,
             'merk'=>$request->merk,
@@ -98,6 +111,11 @@ class SepatuController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $img = $request->file('foto');
+        $name = hexdec(uniqid());
+        $ext = strtolower($img->getClientOriginalExtension());
+        $foto = $name.'.'.$ext;
+        $img->move('foto/',$foto);
           
         $validate = $request->validate([
             'id_suplier'=>'required',
@@ -111,6 +129,7 @@ class SepatuController extends Controller
         ]);
         $sepatu = Sepatu::find($id);
         $sepatu->update([
+            'foto'=>$foto,
             'id_suplier'=>$request->id_suplier,
             'nama'=>$request->nama,
             'merk'=>$request->merk,

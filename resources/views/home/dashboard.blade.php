@@ -4,11 +4,11 @@
 <div class="content-wrapper pb-0">
     <div class="page-header flex-wrap">
    
-        {{-- <h3 class="mb-0"> Hi, {{Auth()->User()->name}} welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block"></span>
+        <h3 class="mb-0"> Hi, {{Auth()->User()->name}} welcome back! <span class="pl-0 h6 pl-sm-2 text-muted d-inline-block"></span>
         </h3>
         @if (session('success'))
         <div class="alert alert-success alert-dismisible fade show" role="alert" data-dismiss="alert">Selamat datang!!</div>
-        @endif  --}}
+        @endif 
     </div>
     <div class="row">
         

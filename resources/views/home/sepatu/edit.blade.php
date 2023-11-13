@@ -11,8 +11,13 @@
                                 <h3>Edit Data Sepatu</h3>
                             </div>
                             <div class="card-body">
-                                <form action="/sepatu/update/{{$sepatu->id}}" method="post">
+                                <form action="/sepatu/update/{{$sepatu->id}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                
+                                <div class="mb-3">
+                                    <label for="" class="form-label">foto</label>
+                                    <input type="file" name="foto" id="" class="form-control" placeholder="" aria-describedby="helpId" >
+                                  </div>
                                 {{-- <div class="mb-3">
                                   <label for="" class="form-label">Suplier</label>
                                   <input type="text" name="id_suplier" id="" class="form-control" placeholder="" aria-describedby="helpId">

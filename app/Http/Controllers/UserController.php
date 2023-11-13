@@ -98,6 +98,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $img = $request->file('foto');
+        $name = hexdec(uniqid());
+        $ext = strtolower($img->getClientOriginalExtension());
+        $foto = $name.'.'.$ext;
+        $img->move('foto/',$foto);
+
         $validate = $request->validate([
             'name'=>'required',
             'username'=>'required',
@@ -107,6 +113,7 @@ class UserController extends Controller
         $user = User::find($id);
         $user->update([
             'name'=>$request->name,
+            'foto'=>$foto,
             'username'=>$request->username,
             'password'=>bcrypt($request->password),
             'level'=>$request->level,

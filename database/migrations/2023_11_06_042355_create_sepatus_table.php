@@ -15,6 +15,7 @@ class CreateSepatusTable extends Migration
     {
         Schema::create('sepatus', function (Blueprint $table) {
             $table->id();
+            $table->string('foto');
             $table->char('id_suplier');
             $table->string('nama');
             $table->string('merk');
