@@ -21,9 +21,11 @@
                                   @enderror
                                 </div>
 
+                                <img class="img-preview img-fluid" alt="Preview" style="width:200px">
+<br><br>
                                 <div class="mb-3">
                                     <label for="" class="form-label">foto</label>
-                                    <input type="file" name="foto" id="" class="form-control" placeholder="" aria-describedby="helpId" >
+                                    <input type="file" name="foto" id="image" class="form-control" placeholder="" aria-describedby="helpId" onchange="previewImage()" >
                                   </div>
 
                                 <div class="mb-3">
@@ -60,5 +62,23 @@
             </div>
         </section>
     </div>
+
+    <script>
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(image.files[0]);
+
+            fileReader.onload = function(oFREvent){
+                imgPreview.src = oFREvent.target.result;
+            }
+        
+        }
+    </script>
+
 
 @endsection
