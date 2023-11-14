@@ -30,6 +30,7 @@ Route::get('/loginmember',[HistoryController::class,'index']);
 Route::post('/hasil',[HistoryController::class,'hasil']);
 
 Route::middleware(['auth'])->group(function () {
+    
 Route::get('/dashboard',[DashboardController::class,'index']);
 
 Route::get('user',[UserController::class,'index']);

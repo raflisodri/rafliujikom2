@@ -24,10 +24,6 @@ class TransaksiController extends Controller
         return view('home.transaksi.index',compact('transaksi','user','member','sepatu'));     
     }
 
-    public function detail($id) {
-        $transaksi = Transaksi::find($id);
-        return view('home.transaksi.detail',compact('transaksi'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -114,6 +110,12 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         $sepatu = Sepatu::find($request->id_sepatu);
+        $transaksi = Transaksi::find($id);
+     
+         $oldQuantity = $transaksi->jumlah;
+        $newQuantity = $request->jumlah;
+        $quantityDifference = $newQuantity - $oldQuantity;
+
         $total = $sepatu->harga * $request->jumlah;
         $validate = $request->validate([
             'id_user'=>'required',
@@ -133,6 +135,12 @@ class TransaksiController extends Controller
             'total'=>$total,
             $request->except(['_token']),
         ]);
+
+        $sepatu->update([
+            'stok' => $sepatu->stok - $quantityDifference,
+            $request->except(['_token']),
+        ]);
+
         return redirect('/transaksi')->with($validate)->with($validate)->with('success1','berhasil menghapus data');
     }
 

@@ -47,7 +47,7 @@
                     <ul class="navbar-nav navbar-nav-right ml-lg-auto">
                         <li class="nav-item nav-profile dropdown border-0">
                             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown">
-                                <img class="nav-profile-img mr-2" alt="" src="{{asset('assets/images/faces/face1.jpg')}}" />
+                                <img class="nav-profile-img mr-2" alt=""  src="{{ asset('foto/' . Auth()->user()->foto)}}" />
                                 <span class="profile-name">{{Auth()->User()->name}}</span>
                             </a>
                             <div class="dropdown-menu navbar-dropdown w-100" aria-labelledby="profileDropdown">
@@ -135,6 +135,23 @@
             })
         }
     </script>
+
+<script>
+    function previewImage(){
+        const image = document.querySelector('#image');
+        const imgPreview = document.querySelector('.img-preview');
+
+        imgPreview.style.display = 'block';
+
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(image.files[0]);
+
+        fileReader.onload = function(oFREvent){
+            imgPreview.src = oFREvent.target.result;
+        }
+    
+    }
+</script>
     <!-- End:Pesan Konfirmasi Hapus -->
     <!-- End custom js for this page -->
 </body>

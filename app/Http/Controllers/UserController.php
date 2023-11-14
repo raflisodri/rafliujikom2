@@ -16,13 +16,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        // if(Auth()->User()->level == 'kasir'){
-        // Auth::logout();
-        // return redirect('login')->with('error1','You dont have permission');
-        // }else{
+        if(Auth()->User()->level == 'kasir'){
+        Auth::logout();
+        return redirect('login')->with('error1','You dont have permission');
+        }else{
             $user = User::all();
             return view('home.user.index',compact(['user']));
-        // }
+        }
     }
 
     /**

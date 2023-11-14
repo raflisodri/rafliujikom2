@@ -94,22 +94,6 @@
             </div>
         </section>
     </div>
-
-    <script>
-        function previewImage() {
-            const image = document.querySelector('#image'); // perbaiki querySelector
-            const imgPreview = document.querySelector('.img-preview'); // perbaiki querySelector
-        
-            imgPreview.style.display = 'block';
-        
-            const fileReader = new FileReader(); // perbaiki penulisan FileReader
-            fileReader.readAsDataURL(image.files[0]); // perbaiki penulisan readAsDataURL
-        
-            fileReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-        </script>
         
 
 @endsection

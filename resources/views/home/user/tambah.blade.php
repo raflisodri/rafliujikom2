@@ -63,22 +63,7 @@
         </section>
     </div>
 
-    <script>
-        function previewImage(){
-            const image = document.querySelector('#image');
-            const imgPreview = document.querySelector('.img-preview');
-
-            imgPreview.style.display = 'block';
-
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(image.files[0]);
-
-            fileReader.onload = function(oFREvent){
-                imgPreview.src = oFREvent.target.result;
-            }
-        
-        }
-    </script>
+    
 
 
 @endsection
