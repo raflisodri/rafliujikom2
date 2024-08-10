@@ -2,15 +2,15 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Str;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             'username' => 'admin',
             'password' => Hash::make('admin'), // Ganti 'password' dengan password yang aman
             'level' => 'admin',
-            // 'remember_token' => Str::random(10),
+            'remember_token' => Str::random(10),
         ]);
     }
 }
