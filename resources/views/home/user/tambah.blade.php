@@ -12,54 +12,76 @@
                             <div class="card-body">
                                 <form action="/user/simpan" method="post" enctype="multipart/form-data">
                                     @csrf
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Name</label>
-                                        <input type="text" name="name" id="" class="form-control"
-                                            placeholder="" aria-describedby="helpId">
-                                        @error('name')
-                                            <div class="alert alert-danger alert-dismisible fade show" role="alert"
-                                                data-dismiss="alert">{{ $message }}</div>
-                                        @enderror
+
+                                    <!-- Foto dan Preview Image -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="image" class="form-label">Foto</label>
+                                            <input type="file" name="foto" id="image" class="form-control"
+                                                onchange="previewImage()">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img class="img-preview img-fluid" alt="Preview"
+                                                style="width:200px; max-height:200px; object-fit:cover;">
+                                        </div>
                                     </div>
 
-                                    <img class="img-preview img-fluid" alt="Preview" style="width:200px">
-                                    <br><br>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">foto</label>
-                                        <input type="file" name="foto" id="image" class="form-control"
-                                            placeholder="" aria-describedby="helpId" onchange="previewImage()">
+                                    <!-- Nama dan Username -->
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <label for="name" class="form-label">Nama</label>
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                placeholder="" aria-describedby="helpId" value="{{ old('name') }}">
+                                            @error('name')
+                                                <div class="alert alert-danger alert-dismisible fade show" role="alert"
+                                                    data-dismiss="alert">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" name="username" id="username" class="form-control"
+                                                placeholder="" aria-describedby="helpId" value="{{ old('username') }}">
+                                            @error('username')
+                                                <div class="alert alert-danger alert-dismisible fade show" role="alert"
+                                                    data-dismiss="alert">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Username</label>
-                                        <input type="text" name="username" id="" class="form-control"
-                                            placeholder="" aria-describedby="helpId">
-                                        @error('username')
-                                            <div class="alert alert-danger alert-dismisible fade show" role="alert"
-                                                data-dismiss="alert">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">Password</label>
-                                        <input type="password" name="password" id="" class="form-control"
-                                            placeholder="" aria-describedby="helpId">
-                                        @error('password')
-                                            <div class="alert alert-danger alert-dismisible fade show" role="alert"
-                                                data-dismiss="alert">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="" class="form-label">level</label>
-                                        <select name="level" id="" class="form-control">
-                                            <option value="admin">Admin</option>
-                                            <option value="kasir">Kasir</option>
+                                    <!-- Password dan Level -->
+                                    <div class="row mb-3 align-items-center">
+                                        <!-- Password Field -->
+                                        <div class="col-md-6">
+                                            <label for="password" class="form-label">Password</label>
+                                            <div class="input-group">
+                                                <input type="password" name="password" id="password" class="form-control"
+                                                    placeholder="" aria-describedby="helpId" style="border-radius: 0;">
+                                                <span class="input-group-text" style="border-radius: 0;">
+                                                    <i id="togglePassword" class="fa fa-eye"></i>
+                                                </span>
+                                            </div>
+                                            @error('password')
+                                                <div class="alert alert-danger alert-dismisible fade show" role="alert"
+                                                    data-dismiss="alert">{{ $message }}</div>
+                                            @enderror
+                                        </div>
 
+                                        <!-- Level Field -->
+                                        <div class="col-md-6">
+                                            <label for="level" class="form-label">Level</label>
+                                            <select name="level" id="level" class="form-control"
+                                                style="border-radius: 0;">
+                                                <option value="admin">Admin</option>
+                                                <option value="kasir">Kasir</option>
+                                            </select>
                                             @error('level')
                                                 <div class="alert alert-danger alert-dismisible fade show" role="alert"
                                                     data-dismiss="alert">{{ $message }}</div>
                                             @enderror
-                                        </select>
+                                        </div>
                                     </div>
+
+
                                     <button type="submit" class="btn btn-info">Simpan</button>
                                 </form>
                             </div>
@@ -69,4 +91,34 @@
             </div>
         </section>
     </div>
+
+    <script>
+        // Script untuk preview image
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(image.files[0]);
+
+            fileReader.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+
+        // Script untuk toggle password visibility
+        // Script untuk toggle password visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+
+            togglePassword.addEventListener('click', function() {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
 @endsection
