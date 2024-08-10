@@ -7,14 +7,17 @@ use App\Models\Transaksi;
 
 class HistoryController extends Controller
 {
-    public function index()  {
+    public function index()
+    {
         return view('home.login2');
     }
 
-    public function hasil(Request $request) {
+    public function hasil(Request $request)
+    {
         $idm = $request->id;
-        $transaksi = Transaksi::where('id_member','=',$idm)->get();
-        return view('home.history',compact('transaksi'));  
+        $transaksi = Transaksi::with('detailTransaksi.sepatu', 'user', 'member')
+            ->where('id_member', '=', $idm)
+            ->get();
+        return view('home.history', compact('transaksi'));
     }
-  
 }

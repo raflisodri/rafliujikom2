@@ -88,8 +88,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="harga" class="form-label">Harga</label>
-                                            <input type="text" name="harga" id="harga" class="form-control"
-                                                oninput="formatRupiah(this)">
+                                            <input type="number" name="harga" id="harga" class="form-control">
                                             @error('harga')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -118,21 +117,6 @@
             oFReader.onload = function(oFREvent) {
                 imgPreview.src = oFREvent.target.result;
             }
-        }
-
-        function formatRupiah(element) {
-            let value = element.value.replace(/[^,\d]/g, '').toString();
-            let split = value.split(',');
-            let sisa = split[0].length % 3;
-            let rupiah = split[0].substr(0, sisa);
-            let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-            if (ribuan) {
-                let separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            element.value = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
         }
     </script>
 @endsection
